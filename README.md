@@ -6,8 +6,8 @@ RUSHBRUSH Task API for **_RUSHBRUSH_** Backend Engineer Assessment made with LAR
 Clone the project
 
 ```bash
-git ''
-cd ''
+git 'https://github.com/mahmoud-adel44/RUSHBRUSH-task.git'
+cd 'cd RUSHBRUSH-task'
 ```
 
 
