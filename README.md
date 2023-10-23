@@ -47,6 +47,7 @@ GET  /api/admin/products
 Orders endpoints
 
 ```http
+GET  /api/user/orders
 POST  /api/user/orders
 PUT  /api/user/orders/:order_id
 ```

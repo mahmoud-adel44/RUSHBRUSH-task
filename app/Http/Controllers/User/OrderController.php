@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\StoreOrderRequest;
+use App\Http\Resources\OrderCollection;
 use App\Http\Resources\OrderResource;
 use App\Models\Order;
 use Illuminate\Http\JsonResponse;
@@ -11,6 +12,17 @@ use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
+    public function index(): JsonResponse
+    {
+        $orders = auth('sanctum')->user()
+            ->orders()
+            ->with('items')
+            ->paginate();
+
+        return $this->successResponse(
+            data: OrderCollection::make($orders)
+        );
+    }
     public function store(StoreOrderRequest $request): JsonResponse
     {
         $order = DB::transaction(

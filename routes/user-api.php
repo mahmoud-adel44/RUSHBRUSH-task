@@ -8,3 +8,4 @@ Route::get('products', ProductController::class);
 
 Route::post('orders', [OrderController::class, 'store']);
 Route::put('orders', [OrderController::class, 'update']);
+Route::get('orders', [OrderController::class, 'index']);
