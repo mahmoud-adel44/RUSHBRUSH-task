@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Contracts\Auth\Authenticatable;
@@ -35,12 +36,12 @@ class AuthenticatedSessionController extends Controller
     private static function authorizeRequest(User|Authenticatable|null $user): void
     {
         throw_if(
-            request()->is('api/admin/*') && $user->type->isCustomer(),
+            request()->is('api/admin/*') && $user?->type->isCustomer(),
             new AuthenticationException('Unauthorized')
         );
 
         throw_if(
-            request()->is('api/auth/*') && $user->type->isAdmin(),
+            request()->is('api/auth/*') && $user?->type->isAdmin(),
             new AuthenticationException('Unauthorized')
         );
     }
